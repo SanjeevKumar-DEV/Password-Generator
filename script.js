@@ -23,6 +23,10 @@ function writePassword() {
     while (!evaluateLengthOfPasswordWithinAcceptedRange()) {
       numberOfCharacters = window.prompt("Please enter length of the desired password between 8 and 128 characters long");
     }
+    lowercaseOption = window.confirm("Press OK to accept atleast one lowercase character in the desired password or Press Cancel if not required.");
+    uppercaseOption = window.confirm("Press OK to accept atleast one uppercase character in the desired password or Press Cancel if not required.");
+    numericOption = window.confirm("Press OK to accept atleast one numeric in the desired password or Press Cancel if not required.");
+    numericOption = window.confirm("Press OK to accept atleast one special character in the desired password or Press Cancel if not required.");
     var generatedPassword = "iAmTempPassword";
     generatedPassword = generatePasswordAfterAllCriteriaSubmittedByUser();
     return generatedPassword;
@@ -49,6 +53,12 @@ function evaluateLengthOfPasswordWithinAcceptedRange() {
 // Function to generate password as per user supplied criteria
 function generatePasswordAfterAllCriteriaSubmittedByUser () {
   var generatedPassword = "iAmJustTempPassword";
+  for (var i = 0; i < numberOfCharacters.length; i++)
+  {
+    //Math.floor(Math.random() * options.length)
+
+  }
+  
   return generatedPassword;
 }
 
