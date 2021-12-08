@@ -57,6 +57,35 @@ function generatePasswordAfterAllCriteriaSubmittedByUser () {
   var upperCaseCharIndex = 0;
   var numericCharIndex = 0;
   var specialCharacterCharIndex = 0;
+  var options  = {
+    lowerCaseOpt : true,
+    upperCaseOpt : true,
+    numericOpt : true,
+    specialCharactersOpt : true
+
+  };
+  // for the case where user did not select any option atleast one option is selected
+  if (!lowerCaseOption && !upperCaseOption && !numericOption && !specialCharactersOption)
+  {
+    atleatOneDefaultOptionSelectedIndex = Math.floor(Math.random() * 4);
+    if (atleatOneDefaultOptionSelectedIndex === 0) 
+    {
+      lowerCaseOption = options.lowerCaseOpt;
+    }
+    if (atleatOneDefaultOptionSelectedIndex === 1) 
+    {
+      upperCaseOption = options.upperCaseOpt;
+    }
+    if (atleatOneDefaultOptionSelectedIndex === 2) 
+    {
+      numericOption = options.numericOpt;
+    }
+    if (atleatOneDefaultOptionSelectedIndex === 3) 
+    {
+      specialCharactersOption = options.specialCharactersOpt;
+    }
+
+  }
   for (var i = 0; i < numberOfCharacters;)
   {
     if(lowerCaseOption)
