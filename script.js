@@ -4,32 +4,33 @@ var lowerCase = "";
 var upperCase = "";
 var numeric = "";
 var specialCharaters = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~}";
-
+var numberOfCharacters;
+var lowercaseOption = true;
+var uppercaseOption = true;
+var numericOption = true;
+var specialCharactersOption = true;
 
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  // var numberOfCharacters;
-
 
   passwordText.value = password;
   function generatePassword() {
-    var numberOfCharacters = window.prompt("Please enter length of the desired password between 8 and 128 characters long");
-    while (!evaluateLengthOfPasswordWithinAcceptedRange(numberOfCharacters)) {
+    // Record first user input for passord length and evaluate the input 
+    numberOfCharacters = window.prompt("Please enter length of the desired password between 8 and 128 characters long");
+    while (!evaluateLengthOfPasswordWithinAcceptedRange()) {
       numberOfCharacters = window.prompt("Please enter length of the desired password between 8 and 128 characters long");
     }
-    console.log(numberOfCharacters);
-    // console.log(numberOfCharacters);
-    function listOfCriteria() {
-    }
-    return "generatedPassword";
+    var generatedPassword = "iAmTempPassword";
+    generatedPassword = generatePasswordAfterAllCriteriaSubmittedByUser();
+    return generatedPassword;
   }
 
 }
 // Function to evaluate whether 8 to 128 charaters have been chosen or not
-function evaluateLengthOfPasswordWithinAcceptedRange(numberOfCharacters) {
+function evaluateLengthOfPasswordWithinAcceptedRange() {
   if (numberOfCharacters >= 8 && numberOfCharacters <= 128) {
     return true;
   }
@@ -43,6 +44,12 @@ function evaluateLengthOfPasswordWithinAcceptedRange(numberOfCharacters) {
       return true;
     }
   }
+}
+
+// Function to generate password as per user supplied criteria
+function generatePasswordAfterAllCriteriaSubmittedByUser () {
+  var generatedPassword = "iAmJustTempPassword";
+  return generatedPassword;
 }
 
 // Add event listener to generate button
