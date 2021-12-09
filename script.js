@@ -57,12 +57,11 @@ function generatePasswordAfterAllCriteriaSubmittedByUser () {
   var upperCaseCharIndex = 0;
   var numericCharIndex = 0;
   var specialCharacterCharIndex = 0;
-  var options  = {
+  var whenOptionsNotSelected  = {
     lowerCaseOpt : true,
     upperCaseOpt : true,
     numericOpt : true,
     specialCharactersOpt : true
-
   };
   // for the case where user did not select any option atleast one option is selected
   if (!lowerCaseOption && !upperCaseOption && !numericOption && !specialCharactersOption)
@@ -70,19 +69,19 @@ function generatePasswordAfterAllCriteriaSubmittedByUser () {
     atleatOneDefaultOptionSelectedIndex = Math.floor(Math.random() * 4);
     if (atleatOneDefaultOptionSelectedIndex === 0) 
     {
-      lowerCaseOption = options.lowerCaseOpt;
+      lowerCaseOption = whenOptionsNotSelected.lowerCaseOpt;
     }
-    if (atleatOneDefaultOptionSelectedIndex === 1) 
+    else if (atleatOneDefaultOptionSelectedIndex === 1) 
     {
-      upperCaseOption = options.upperCaseOpt;
+      upperCaseOption = whenOptionsNotSelected.upperCaseOpt;
     }
-    if (atleatOneDefaultOptionSelectedIndex === 2) 
+    else if (atleatOneDefaultOptionSelectedIndex === 2) 
     {
-      numericOption = options.numericOpt;
+      numericOption = whenOptionsNotSelected.numericOpt;
     }
-    if (atleatOneDefaultOptionSelectedIndex === 3) 
+    else 
     {
-      specialCharactersOption = options.specialCharactersOpt;
+      specialCharactersOption = whenOptionsNotSelected.specialCharactersOpt;
     }
 
   }
