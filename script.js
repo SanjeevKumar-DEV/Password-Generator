@@ -9,6 +9,7 @@ var lowerCaseOption = true;
 var upperCaseOption = true;
 var numericOption = true;
 var specialCharactersOption = true;
+var exitTheProgram = false;
 
 
 // Write password to the #password input
@@ -23,12 +24,19 @@ function writePassword() {
     while (!evaluateLengthOfPasswordWithinAcceptedRange()) {
       numberOfCharacters = window.prompt("Please enter length of the desired password between 8 and 128 characters long");
     }
-    lowerCaseOption = window.confirm("Press OK to accept atleast one lowercase character in the desired password or Press Cancel if not required.");
-    upperCaseOption = window.confirm("Press OK to accept atleast one uppercase character in the desired password or Press Cancel if not required.");
-    numericOption = window.confirm("Press OK to accept atleast one numeric in the desired password or Press Cancel if not required.");
-    specialCharactersOption = window.confirm("Press OK to accept atleast one special character in the desired password or Press Cancel if not required.");
-    var generatedPassword = "iAmTempPassword";
-    generatedPassword = generatePasswordAfterAllCriteriaSubmittedByUser();
+    if (exitTheProgram) {
+      generatedPassword = "";
+    }
+    else {
+      lowerCaseOption = window.confirm("Press OK to accept atleast one lowercase character in the desired password or Press Cancel if not required.");
+      upperCaseOption = window.confirm("Press OK to accept atleast one uppercase character in the desired password or Press Cancel if not required.");
+      numericOption = window.confirm("Press OK to accept atleast one numeric in the desired password or Press Cancel if not required.");
+      specialCharactersOption = window.confirm("Press OK to accept atleast one special character in the desired password or Press Cancel if not required.");
+      var generatedPassword = "iAmTempPassword";
+      generatedPassword = generatePasswordAfterAllCriteriaSubmittedByUser();
+      return generatedPassword;
+    }
+    exitTheProgram = false;
     return generatedPassword;
   }
 
@@ -45,68 +53,59 @@ function evaluateLengthOfPasswordWithinAcceptedRange() {
     }
     else {
       window.alert("Thank you for choosing password generator.");
+      exitTheProgram = true;
       return true;
     }
   }
 }
 
 // Function to generate password as per user supplied criteria
-function generatePasswordAfterAllCriteriaSubmittedByUser () {
+function generatePasswordAfterAllCriteriaSubmittedByUser() {
   var generatedPassword = "";
   var lowerCaseCharIndex = 0;
   var upperCaseCharIndex = 0;
   var numericCharIndex = 0;
   var specialCharacterCharIndex = 0;
-  var whenOptionsNotSelected  = {
-    lowerCaseOpt : true,
-    upperCaseOpt : true,
-    numericOpt : true,
-    specialCharactersOpt : true
+  var whenOptionsNotSelected = {
+    lowerCaseOpt: true,
+    upperCaseOpt: true,
+    numericOpt: true,
+    specialCharactersOpt: true
   };
   // for the case where user did not select any option atleast one option is selected
-  if (!lowerCaseOption && !upperCaseOption && !numericOption && !specialCharactersOption)
-  {
+  if (!lowerCaseOption && !upperCaseOption && !numericOption && !specialCharactersOption) {
     atleatOneDefaultOptionSelectedIndex = Math.floor(Math.random() * 4);
-    if (atleatOneDefaultOptionSelectedIndex === 0) 
-    {
+    if (atleatOneDefaultOptionSelectedIndex === 0) {
       lowerCaseOption = whenOptionsNotSelected.lowerCaseOpt;
     }
-    else if (atleatOneDefaultOptionSelectedIndex === 1) 
-    {
+    else if (atleatOneDefaultOptionSelectedIndex === 1) {
       upperCaseOption = whenOptionsNotSelected.upperCaseOpt;
     }
-    else if (atleatOneDefaultOptionSelectedIndex === 2) 
-    {
+    else if (atleatOneDefaultOptionSelectedIndex === 2) {
       numericOption = whenOptionsNotSelected.numericOpt;
     }
-    else 
-    {
+    else {
       specialCharactersOption = whenOptionsNotSelected.specialCharactersOpt;
     }
 
   }
-  for (var i = 0; i < numberOfCharacters;)
-  {
-    if(lowerCaseOption)
-    {
+  for (var i = 0; i < numberOfCharacters;) {
+    if (lowerCaseOption) {
       lowerCaseCharIndex = Math.floor(Math.random() * lowerCase.length);
       generatedPassword = generatedPassword + lowerCase[lowerCaseCharIndex];
       i++;
     }
-    if(upperCaseOption)
-    {
+    if (upperCaseOption) {
       upperCaseCharIndex = Math.floor(Math.random() * upperCase.length);
       generatedPassword = generatedPassword + upperCase[upperCaseCharIndex];
       i++;
     }
-    if(numericOption)
-    {
+    if (numericOption) {
       numericCharIndex = Math.floor(Math.random() * numeric.length);
       generatedPassword = generatedPassword + numeric[numericCharIndex];
       i++;
     }
-    if(specialCharactersOption)
-    {
+    if (specialCharactersOption) {
       specialCharacterCharIndex = Math.floor(Math.random() * specialCharacters.length);
       generatedPassword = generatedPassword + specialCharacters[specialCharacterCharIndex];
       i++;
